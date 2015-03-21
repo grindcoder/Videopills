@@ -1,0 +1,5 @@
+*.pyc
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+*.komodoproject
+virtenv/ # ignora il virtual env
