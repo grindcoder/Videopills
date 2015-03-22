@@ -45,7 +45,9 @@ else:
 
 # List of admins (+ 500 error report by mail)
 ADMINS = (
-    ('Name', 'mail@example.com'),
+    ('Simone Chiorazzo', 'chiora93@gmail.com'),
+    ('Gabriele Ursino', 'ursinogabriele.0@gmail.com'),
+
 )
 
 # Application definition
@@ -89,20 +91,36 @@ if ON_OPENSHIFT: # production settings
          }
     }
 else: # dev settings
-     DATABASES = {
-         'default': {
-             'ENGINE': 'django.db.backends.sqlite3',
-             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    ####
+    #   Imposto il db mysql che abbiamo in locale (il portatile senza schemo xD)
+    #   Da commentare per test in locale!!!!!!!!!
+    ####
+    DATABASES = {
+         'default': { # you can change the backend to any django supported
+            'ENGINE':   'mysql.connector.django', # setto un ENGINE compatibile con python3 ...
+            'NAME':     "videopills",
+            'USER':     "demo",
+            'PASSWORD': "demo",
+            'HOST':    "192.168.1.105",
+            'PORT':     3306,
          }
     }
+    ###
+    # Da scommentare per test in locale!!!!!!!!!!
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #     }
+    #}
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'fr_FR'
+LANGUAGE_CODE = 'it_IT'
 
-TIME_ZONE = 'Europe/Paris'
+TIME_ZONE = 'Europe/Rome'
 
 USE_I18N = True
 

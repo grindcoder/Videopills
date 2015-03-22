@@ -5,7 +5,7 @@ from openshift import settings
 import video_manager.views
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', video_manager.views.redirect_to_videopills)
+    url(r'^/', video_manager.views.redirect_to_videopills)
 )
 
 # include static files
