@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.contrib import admin
 from video_manager.models import *
 # Register your models here. E quindi?

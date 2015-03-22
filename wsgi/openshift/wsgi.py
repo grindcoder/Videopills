@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 WSGI config for openshift project.
 
@@ -10,7 +11,8 @@ https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/
 import os
 import sys
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+sys.path.append('/var/www/videopills/wsgi')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "openshift.settings")
 
 if 'OPENSHIFT_REPO_DIR' in os.environ:
     sys.path.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'openshift'))
