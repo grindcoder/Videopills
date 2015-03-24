@@ -1,7 +1,7 @@
-Python 3 + Django 1.7 with Openshift
+Python 3 / Python 2.7 + Django 1.7 with Openshift
 ====================================
 
-This repository is an enabler to run Django (1.7) applications with Python 3.x on [OpenShift](https://openshift.redhat.com/).
+Repository del progetto VideoPills
 
 Prerequisites
 -------------
