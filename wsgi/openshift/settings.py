@@ -37,6 +37,8 @@ else:
      DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'openshift','templates') ,)
+
 
 # Enable debug for only selected hosts
 if DEBUG:
