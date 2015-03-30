@@ -136,12 +136,12 @@ USE_TZ = True
 if ON_OPENSHIFT:
     STATIC_ROOT = os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'static',)
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR ,'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, '..' ,'static')
+
 STATIC_URL = '/static/'
 
-
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static",)
+    os.path.join(BASE_DIR, "static"),
     #/home/admin/videopills/wsgi/static/ ,
 )
 
