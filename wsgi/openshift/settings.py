@@ -108,14 +108,14 @@ else: # dev settings
             'PORT':     3306,
          }
     }
-    ###
-    # Da scommentare per test in locale!!!!!!!!!!
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #     }
-    #}
+    #Da scommentare per test in locale!!!!!!!!!!
+
+    DATABASES = {
+         'default': {
+             'ENGINE': 'django.db.backends.sqlite3',
+             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+         }
+    }
 
 
 # Internationalization
@@ -134,11 +134,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 if ON_OPENSHIFT:
-    STATIC_ROOT = os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'static')
+    STATIC_ROOT = os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'static',)
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR ,'static')
 STATIC_URL = '/static/'
 
+
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "static",)
+    #/home/admin/videopills/wsgi/static/ ,
 )
+
