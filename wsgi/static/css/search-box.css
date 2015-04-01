@@ -3,18 +3,17 @@ body{
 }
 
 .container{
-    width:600px;
+
     margin:50px auto;
 }
 
 .searchbox{
     position:relative;
-    min-width:50px;
+    min-width:150px;
     width:0%;
     height:50px;
-    float:right;
+    margin: 0 auto;
     overflow:hidden;
-    
     -webkit-transition: width 0.3s;
     -moz-transition: width 0.3s;
     -ms-transition: width 0.3s;
@@ -55,8 +54,7 @@ body{
     display:block;
     position:absolute;
     top:0;
-    font-family:verdana;
-    font-size:22px;
+    font-size:30px;
     right:0;
     padding:0;
     margin:0;
@@ -67,9 +65,12 @@ body{
     cursor:pointer;
     color:#dcddd8;
     background:#172b3c;
+     width: 150px;
 }
 
+.searchbox-icon{
 
+}
 
 .searchbox-open{
     width:100%;
