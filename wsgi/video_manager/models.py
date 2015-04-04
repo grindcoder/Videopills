@@ -16,7 +16,7 @@ class Series(models.Model):  # la Serie e i trailer relativi alla serie
 
 class VideoContainer(models.Model):                      # contenitore del video,cioè tutte le info sul video che viene riprodotto
     episode_name = models.ForeignKey(Series)
-    episode_trailer_filename = models.CharField(max_length= 100)
+    episode_trailer_filename = models.FileField(upload_to='pills/%Y/%m/%d')
     custom_description = models.TextField(max_length=1000, null=True)
     pub_date = models.DateField()
 

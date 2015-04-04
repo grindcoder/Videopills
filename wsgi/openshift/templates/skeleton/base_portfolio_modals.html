@@ -1,8 +1,8 @@
-    {% load static from staticfiles %}
+    {% load static %}
     {% for pills in list_of_pills %}
 
     <!-- Inzia Portfolio Modals -->
-    <div class="portfolio-modal modal fade" id={{pills.episode_name.pk}} tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="{{pills.episode_name.pk}}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -16,7 +16,13 @@
                         <div class="modal-body">
                             <h2>{{pills.episode_name}}</h2>
                             <hr class="star-primary">
-                            <img src="{% static 'img/portfolio/cabin.png' %}" class="img-responsive img-centered" alt="">
+                            <video id="{{pills.episode_name.pk}}" class="video-js vjs-default-skin" controls
+                             preload="auto" width="640" height="264" poster="{% static 'img/portfolio/cabin.png' %}"
+                             data-setup="{}">
+                             <source src="{%get_media_prefix%}{{ pills.episode_trailer_filename}}" type='video/mp4'>
+                             <!--source src="MY_VIDEO.webm" type='video/webm'-->
+                             <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                            </video>
                             <p>
                                 {{pills.custom_description}}
                             </p>
