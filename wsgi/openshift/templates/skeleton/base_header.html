@@ -7,10 +7,10 @@
                     <img class="img-responsive" src="{% static 'img/pill.png' %}" alt="">
                     <div class="intro-text">
                         <span class="name">Videopills</span>
-                        <form class="searchbox">
-                            <input type="search" placeholder="Search......" name="search" class="searchbox-input" onkeyup="buttonUp();" required>
+                        <form class="searchbox" action="/search">
+                            <input type="search" placeholder="Search......" name="q" class="searchbox-input" onkeyup="buttonUp();" required>
                             <input type="submit" class="searchbox-submit" value="CERCA!">
-                            <span class="searchbox-icon before-search" id="search" onclick="search()">CERCA</span>
+                            <span class="searchbox-icon before-search" id="search" onclick="">CERCA</span>
                         </form>
                         <hr class="star-light">
                         <span class="skills">Riguarda i momenti migliori delle tue Serie TV preferite grazie a  Videopills,

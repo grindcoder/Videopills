@@ -15,6 +15,7 @@
                 }
             });  
              submitIcon.mouseup(function(){
+
                     return false;
                 });
             searchBox.mouseup(function(){
