@@ -40,6 +40,14 @@ TEMPLATE_DEBUG = DEBUG
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'openshift','templates') ,)
 
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    "django.core.context_processors.request",
+)
+
+GRAPPELLI_ADMIN_TITLE = "Videopills"
+
+
 # Enable debug for only selected hosts
 if DEBUG:
      ALLOWED_HOSTS = []
@@ -56,6 +64,7 @@ ADMINS = (
 # Application definition
 
 INSTALLED_APPS = (
+    'grappelli', # customizzatore dell'interfaccia di admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
