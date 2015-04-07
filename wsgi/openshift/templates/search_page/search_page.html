@@ -1,14 +1,28 @@
+{% load static from staticfiles %}
+
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+<html lang="en">
+
+<head>
+    {% include 'skeleton/custom_head.html' %}
+    {% block custom_head %}
+    {% endblock %}
+
 </head>
-<body>
+
+<body id="page-top" class="index">
 
     {% include 'skeleton/base_nav.html' %}
     {% block base_nav.html %}
     {% endblock %}
+
+
+    <h1> You searched for "{{"query_string"}}" and the results are listed below.
+
+    <li>"{{"found_entries"}}"</li>
+
+    </h1>
+
 
 
 
