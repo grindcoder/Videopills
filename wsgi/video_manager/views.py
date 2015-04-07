@@ -7,7 +7,6 @@ import re
 from django.db.models import Q
 # Create your views here.
 
-
 def home(request):
     # TODO gabri
     # Non prendere tutti i video pills ma solo gli ultimi 6 che sono stati inseriti
@@ -59,10 +58,11 @@ def search(request):
      if ('q' in request.GET) and request.GET['q'].strip():
          query_string = request.GET['q']
 
-         entry_query = get_query(query_string, ['episode_trailer_filename', 'pub_date',])
+         entry_query = get_query(query_string, ['episode_name__series_name','episode_name__episode_trailer','custom_description' ]) #'pub_date',])
+         #raise Exception(entry_query)
 
          found_entries = VideoContainer.objects.filter(entry_query).order_by('-pub_date')
-
+         #raise Exception(found_entries)
      return render_to_response('search_page/search_page.html',
                            { 'query_string': query_string, 'found_entries': found_entries },)
 

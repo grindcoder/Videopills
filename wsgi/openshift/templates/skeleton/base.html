@@ -14,35 +14,30 @@
     {% block base_nav.html %}
     {% endblock %}
 
-    {% include 'skeleton/base_header.html' %}
-    {% block base_header %}
-    {% endblock %}
 
-    {% include 'skeleton/custom_portfolio_grid_section.html' %}
-    {% block custom_portfolio_grid_section %}
-    {% endblock %}
+    <header>
+        {% include 'skeleton/base_header.html' %}
+        {% block custom_header %}
+        {% endblock %}
+    </header>
 
-    {% include 'skeleton/base_portfolio_modals.html' %}
-    {% block custom_base_portfolio_modals %}
-    {% endblock %}
 
-    {% include 'skeleton/base_about_section.html' %}
-    {% block base_about_section %}
-    {% endblock %}
 
-    {% include 'skeleton/base_contact_section.html' %}
-    {% block base_contact_section %}
-    {% endblock %}
 
-    {% include 'skeleton/custom_footer.html' %}
-    {% block custom_footer %}
-    {% endblock %}
 
     {% include 'skeleton/base_scrolltotopbutton.html' %}
     {% block base_scrolltotopbutton %}
     {% endblock %}
 
 
+    {# ATTENZIONE CAZZO -> QUESTO È IL BLOCCO DEL CONTENUTO DELLE PAGINE #}
+    {% block content %}
+    {% endblock %}
+
+
+    {% include 'skeleton/custom_footer.html' %}
+    {% block custom_footer %}
+    {% endblock %}
 
     {% include 'skeleton/base_Javascript.html' %}
     {% block base_JQuery %}

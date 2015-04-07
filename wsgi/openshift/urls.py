@@ -6,11 +6,11 @@ from django.conf.urls.static import static
 from openshift import settings
 import video_manager.views
 urlpatterns = patterns('',
-    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^home/', video_manager.views.home),
     url(r'^$',RedirectView.as_view(url='/home', permanent = False) , name = 'Index'),
     url(r'^search/',video_manager.views.search),
+    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+    url(r'^admin/', include(admin.site.urls)),
 )
 
 # include static files
