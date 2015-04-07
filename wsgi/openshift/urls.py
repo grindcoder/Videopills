@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^home/', video_manager.views.home),
     url(r'^$',RedirectView.as_view(url='/home', permanent = False) , name = 'Index'),
+    url(r'^search/',video_manager.views.search),
 )
 
 # include static files
