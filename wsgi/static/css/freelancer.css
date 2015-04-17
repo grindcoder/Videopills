@@ -38,7 +38,7 @@ h6 {
 
 hr.star-light,
 hr.star-primary {
-    margin: 25px auto 30px;
+    margin: 45px auto 60px;
     padding: 0;
     max-width: 250px;
     border: 0;
@@ -120,6 +120,7 @@ header .intro-text .skills {
 
     header .intro-text .skills {
         font-size: 1.35em;
+
     }
 }
 

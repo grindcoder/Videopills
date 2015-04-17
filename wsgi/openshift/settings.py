@@ -111,20 +111,20 @@ else: # dev settings
          'default': { # you can change the backend to any django supported
             'ENGINE':   'mysql.connector.django', # setto un ENGINE compatibile con python3 ...
             'NAME':     "videopills",
-            'USER':     "demo",
-            'PASSWORD': "demo",
-            'HOST':    "192.168.1.105",
+            'USER':     "videopills",
+            'PASSWORD': "A3ternatenebrae",
+            'HOST':    "192.168.1.104",
             'PORT':     3306,
          }
     }
     #Da scommentare per test in locale!!!!!!!!!!
 
-    DATABASES = {
-         'default': {
-             'ENGINE': 'django.db.backends.sqlite3',
-             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-         }
-    }
+    #DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #     }
+    #}
 
 
 # Internationalization
