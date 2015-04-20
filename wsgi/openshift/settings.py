@@ -37,6 +37,16 @@ else:
      DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'openshift','templates') ,)
+
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    "django.core.context_processors.request",
+)
+
+GRAPPELLI_ADMIN_TITLE = "Videopills"
+
 
 # Enable debug for only selected hosts
 if DEBUG:
@@ -54,6 +64,7 @@ ADMINS = (
 # Application definition
 
 INSTALLED_APPS = (
+    'grappelli', # customizzatore dell'interfaccia di admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -100,15 +111,15 @@ else: # dev settings
          'default': { # you can change the backend to any django supported
             'ENGINE':   'mysql.connector.django', # setto un ENGINE compatibile con python3 ...
             'NAME':     "videopills",
-            'USER':     "demo",
-            'PASSWORD': "demo",
-            'HOST':    "192.168.1.105",
+            'USER':     "videopills",
+            'PASSWORD': "A3ternatenebrae",
+            'HOST':    "192.168.1.104",
             'PORT':     3306,
          }
     }
-    ###
-    # Da scommentare per test in locale!!!!!!!!!!
-    # DATABASES = {
+    #Da scommentare per test in locale!!!!!!!!!!
+
+    #DATABASES = {
     #     'default': {
     #         'ENGINE': 'django.db.backends.sqlite3',
     #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -132,7 +143,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 if ON_OPENSHIFT:
-    STATIC_ROOT = os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'static')
+    STATIC_ROOT = os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'static',)
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, '..' ,'static')
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    #/home/admin/videopills/wsgi/static/ ,
+)
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR,'..', 'media')
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+MEDIA_URL = '/media/'

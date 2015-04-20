@@ -3,3 +3,4 @@
 .idea/
 *.komodoproject
 virtenv/ # ignora il virtual env
+static/ # ignora i file statici che vengono creati con il comando : manage.py collectstatic

@@ -1,0 +1,40 @@
+{% extends 'skeleton/base.html' %}
+{% block content %}
+
+    {% include 'skeleton/custom_portfolio_grid_section.html' %}
+    {% block custom_portfolio_grid_section %}
+    {% endblock %}
+
+    {% include 'skeleton/base_portfolio_modals.html' %}
+    {% block custom_base_portfolio_modals %}
+    {% endblock %}
+
+    {% include 'skeleton/base_about_section.html' %}
+    {% block base_about_section %}
+    {% endblock %}
+
+    {% block base_contact_section %}
+    {% endblock %}
+
+
+
+{% endblock %}
+
+{% block custom_header %}
+
+                    <div class="intro-text">
+                        <span class="name">Videopills</span>
+                        <form class="searchbox" action="/search">
+                            <input type="search" placeholder="Search......" name="q" class="searchbox-input" onkeyup="buttonUp();" required>
+                            <input type="submit" class="searchbox-submit" value="CERCA!">
+                            <span class="searchbox-icon before-search" id="search" onclick="">CERCA</span>
+                        </form>
+                        <hr class="star-light">
+                        <div style="clear:both;"></div>
+                        <span class="skills">Riguarda i momenti migliori delle tue Serie TV preferite grazie a  Videopills,
+                            la prima app al mondo <!-- COME NO !? --> che ti fornisce la Pillola giusta per ogni puntata della Serie che segui da sempre
+                            <p></p>
+                            Inserisci nella barra di ricerca il nome o la puntata di cui non ricordi i momenti salienti e buona visione!
+                        </span>
+                    </div>
+{%endblock %}
