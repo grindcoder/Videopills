@@ -11,3 +11,9 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 
+class UserProfileForm(forms.ModelForm):
+    pills_preferiti = forms.ModelChoiceField(VideoContainer.objects.all())
+
+    class Meta:
+        model = UserProfile
+        fields = ('pills_preferiti',)

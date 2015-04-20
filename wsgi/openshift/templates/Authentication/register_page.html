@@ -25,8 +25,10 @@
         {% else %}
 
         <h1>Puoi effettuare qui la tua registrazione</h1>
-
-        <form id="user_form" method="post" action="/home/"
+        {% if errors %}
+        <h3>{{errors}}</h3>
+        {% endif %}
+        <form id="user_form" method="post" action="/register/"
                 enctype="multipart/form-data">
 
             {% csrf_token %}
