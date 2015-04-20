@@ -104,7 +104,7 @@ def register(request):
         # Print problems to the terminal.
         # They'll also be shown to the user.
         else:
-            print user_form.errors
+            print(user_form.errors)
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
@@ -143,10 +143,11 @@ def user_login(request):
                 # An inactive account was used - no logging in!
                 return render_to_response('Authentication/register_page.html', {'form': form},
                                           context_instance=RequestContext(request))
-        # else:
-        #     # Bad login details were provided. So we can't log the user in.
-        #     print "Invalid login details: {0}, {1}".format(username, password)
-        #     return HttpResponse("Invalid login details supplied.")
+
+        else:
+             # Bad login details were provided. So we can't log the user in.
+             # Redirect to register page
+             return HttpResponseRedirect('/register/')
 
     # The request is not a HTTP POST, so display the login form.
     # This scenario would most likely be a HTTP GET.
