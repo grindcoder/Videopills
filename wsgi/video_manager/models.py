@@ -2,7 +2,8 @@
 from django.db import models
 import datetime
 import time
-
+from django import forms
+from django.contrib.auth.models import User
 # Create your models here.
 class Series(models.Model):  # la Serie e i trailer relativi alla serie
     series_name = models.CharField(max_length=50)
@@ -23,6 +24,19 @@ class VideoContainer(models.Model):                      # contenitore del video
 
     def __str__(self):
         return "Episose name: %s Custom description: %%s" % self.episode_name %self.custom_description
+
+
+
+class UserProfile(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+
+
+    def __unicode__(self):
+        return self.user.username
+
+
+
 
 
 

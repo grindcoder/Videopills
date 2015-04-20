@@ -3,8 +3,13 @@ import datetime
 from video_manager.models import VideoContainer
 from django.shortcuts import render_to_response
 import re
-
 from django.db.models import Q
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from video_manager.forms import  UserForm
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect, HttpResponse
+
 # Create your views here.
 
 def home(request):
@@ -65,5 +70,89 @@ def search(request):
          #raise Exception(found_entries)
      return render_to_response('search_page/search_page.html',
                            { 'query_string': query_string, 'found_entries': found_entries },)
+
+
+
+
+def register(request):
+
+    registered = False
+
+ #   merge da home a develop in develop branch login(origin login)
+    if request.method == 'POST':
+        # Attempt to grab information from the raw form information.
+        # Note that we make use of both UserForm and UserProfileForm.
+        user_form = UserForm(data=request.POST)
+        #profile_form = UserProfileForm(data=request.POST)
+
+        # If the two forms are valid...
+        if user_form.is_valid():
+        # Save the user's form data to the database.
+
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+
+            profile.user = user
+
+            profile.save()
+
+            # Update our variable to tell the template registration was successful.
+            registered = True
+
+        # Invalid form or forms - mistakes or something else?
+        # Print problems to the terminal.
+        # They'll also be shown to the user.
+        else:
+            print user_form.errors
+
+    # Not a HTTP POST, so we render our form using two ModelForm instances.
+    # These forms will be blank, ready for user input.
+    else:
+        user_form = UserForm()
+
+
+    # Render the template depending on the context.
+    return render(request,
+            'Authentication/register_page.html',
+            {'user_form': user_form,  'registered': registered} )
+
+
+def user_login(request):
+
+    # If the request is a HTTP POST, try to pull out the relevant information.
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Use Django's machinery to attempt to see if the username/password
+        # combination is valid - a User object is returned if it is.
+        user = authenticate(username=username, password=password)
+
+        # If we have a User object, the details are correct.
+        # If None (Python's way of representing the absence of a value), no user
+        # with matching credentials was found.
+        if user:
+            # Is the account active? It could have been disabled.
+            if user.is_active:
+                # If the account is valid and active, we can log the user in.
+                # We'll send the user back to the homepage.
+                login(request, user)
+                return HttpResponseRedirect('/home/')
+            else:
+                # An inactive account was used - no logging in!
+                return render_to_response('Authentication/register_page.html', {'form': form},
+                                          context_instance=RequestContext(request))
+        # else:
+        #     # Bad login details were provided. So we can't log the user in.
+        #     print "Invalid login details: {0}, {1}".format(username, password)
+        #     return HttpResponse("Invalid login details supplied.")
+
+    # The request is not a HTTP POST, so display the login form.
+    # This scenario would most likely be a HTTP GET.
+    else:
+        # No context variables to pass to the template system, hence the
+        # blank dictionary object...
+        return render(request, 'Authentication/login_page.html', {})
 
 

@@ -42,7 +42,8 @@ TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'openshift','templates') ,)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
-    "django.core.context_processors.request",
+     "django.core.context_processors.request",
+     "django.core.context_processors.csrf",
 )
 
 GRAPPELLI_ADMIN_TITLE = "Videopills"
@@ -119,12 +120,12 @@ else: # dev settings
     }
     #Da scommentare per test in locale!!!!!!!!!!
 
-    #DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #     }
-    #}
+    DATABASES = {
+        'default': {
+             'ENGINE': 'django.db.backends.sqlite3',
+             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Internationalization
