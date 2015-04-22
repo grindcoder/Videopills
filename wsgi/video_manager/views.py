@@ -9,9 +9,10 @@ from django.http import HttpResponseRedirect
 from video_manager.forms import  UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required(login_url="/login")
 def home(request):
     # TODO gabri
     # Non prendere tutti i video pills ma solo gli ultimi 6 che sono stati inseriti
@@ -57,6 +58,9 @@ def get_query(query_string, search_fields):
             query = query & or_query
     return query
 
+
+
+@login_required(login_url="/login")
 def search(request):
      query_string = ''
      found_entries = None
@@ -124,6 +128,7 @@ def user_login(request):
 
     # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
+        errors = {}
         username = request.POST.get('username')
         password = request.POST.get('password')
 
@@ -149,13 +154,17 @@ def user_login(request):
         else:
              # Bad login details were provided. So we can't log the user in.
              # Redirect to register page
-             return HttpResponseRedirect('/register/')
+             errors['message'] = "Credenziali non valide"
+             # No context variables to pass to the template system, hence the
+             # blank dictionary object...
+             return render(request, 'Authentication/login_page.html', {'errors' : errors, 'no_header': True})
+
 
     # The request is not a HTTP POST, so display the login form.
     # This scenario would most likely be a HTTP GET.
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render(request, 'Authentication/login_page.html', {})
+        return render(request, 'Authentication/login_page.html', {'no_header' : True})
 
 
