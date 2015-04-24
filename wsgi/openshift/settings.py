@@ -14,16 +14,16 @@ import os
 import socket
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# Running on OpenShift ?
-ON_OPENSHIFT = False
-if 'OPENSHIFT_REPO_DIR' in os.environ:
-     ON_OPENSHIFT = True
+# Running on PRODUCTION ?
+ON_PROD = False
+if socket.gethostname() == "raspberrypi" : # distinguo se siamo in produzione in base all'hostname
+    ON_PROD = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-if ON_OPENSHIFT:
+if ON_PROD:
     try:
         SECRET_KEY = os.environ['DJANGO_SETTINGS_SECRET_KEY']
     except KeyError:
@@ -32,7 +32,7 @@ else:
     SECRET_KEY = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz' # dev key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if ON_OPENSHIFT:
+if ON_PROD:
      DEBUG = False
 else:
      DEBUG = True
@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'openshift.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-if socket.gethostname() == "raspberrypi"  : # production settings
+if ON_PROD : # production settings
     DATABASES = {
         'default': { # you can change the backend to any django supported
                      'ENGINE':   'mysql.connector.django', # setto un ENGINE compatibile con python3 ...
@@ -141,7 +141,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-if ON_OPENSHIFT:
+if ON_PROD:
     STATIC_ROOT = os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'static',)
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, '..' ,'static')
