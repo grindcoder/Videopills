@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import socket
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Running on OpenShift ?
@@ -92,44 +93,41 @@ WSGI_APPLICATION = 'openshift.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-if ON_OPENSHIFT: # production settings
+if socket.gethostname() == "raspberrypi"  : # production settings
     DATABASES = {
-         'default': { # you can change the backend to any django supported
-            'ENGINE':   'mysql.connector.django', # setto un ENGINE compatibile con python3 ...
-            'NAME':     os.environ['OPENSHIFT_APP_NAME'],
-            'USER':     os.environ['OPENSHIFT_MYSQL_DB_USERNAME'],
-            'PASSWORD': os.environ['OPENSHIFT_MYSQL_DB_PASSWORD'],
-            'HOST':     os.environ['OPENSHIFT_MYSQL_DB_HOST'],
-            'PORT':     os.environ['OPENSHIFT_MYSQL_DB_PORT'],
-         }
+        'default': { # you can change the backend to any django supported
+                     'ENGINE':   'mysql.connector.django', # setto un ENGINE compatibile con python3 ...
+                     'NAME':     "videopills_prod",
+                     'USER':     "supercu",
+                     'PASSWORD': "A3ternatenebrae",
+                     'HOST':     "localhost",
+                     'PORT':     3306,
+                     }
     }
 else: # dev settings
-    ####
-    #   Imposto il db mysql che abbiamo in locale (il portatile senza schemo xD)
+
     #   Da commentare per test in locale!!!!!!!!!
     ####
+    #   Imposto il db mysql che abbiamo in locale (il portatile senza schemo xD)
+    ####
     DATABASES = {
-         'default': { # you can change the backend to any django supported
-            'ENGINE':   'mysql.connector.django', # setto un ENGINE compatibile con python3 ...
-            'NAME':     "videopills",
-            'USER':     "videopills",
-            'PASSWORD': "A3ternatenebrae",
-            'HOST':    "192.168.1.104",
-            'PORT':     3306,
-         }
+        'default': { # you can change the backend to any django supported
+                     'ENGINE':   'mysql.connector.django', # setto un ENGINE compatibile con python3 ...
+                     'NAME':     "videopills",
+                     'USER':     "supercu",
+                     'PASSWORD': "A3ternatenebrae",
+                     'HOST':    "192.168.1.100",
+                     'PORT':     3306,
+                     }
     }
     #Da scommentare per test in locale!!!!!!!!!!
 
-    #DATABASES = {
-    #    'default': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #    }
-    #}
+
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
+#
 
 LANGUAGE_CODE = 'it_IT'
 
