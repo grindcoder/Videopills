@@ -10,6 +10,7 @@ from video_manager.forms import  UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 # Create your views here.
 
 @login_required(login_url="/login")
@@ -18,7 +19,9 @@ def home(request):
     # Non prendere tutti i video pills ma solo gli ultimi 6 che sono stati inseriti
     # in ordine temporale
     pills= VideoContainer.objects.all().order_by('-pub_date')[:6]
-    return render_to_response('home/home.html', {"list_of_pills":pills} )
+
+    return render_to_response('home/home.html', {"list_of_pills":pills},
+                              context_instance=RequestContext(request))
 
 def redirect_to_videopills():
     return "fuck"
@@ -73,7 +76,8 @@ def search(request):
          found_entries = VideoContainer.objects.filter(entry_query).order_by('-pub_date')
          #raise Exception(found_entries)
      return render_to_response('search_page/search_page.html',
-                           { 'query_string': query_string, 'found_entries': found_entries },)
+                           { 'query_string': query_string, 'found_entries': found_entries },
+                           context_instance=RequestContext(request))
 
 
 
