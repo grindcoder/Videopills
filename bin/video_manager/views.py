@@ -23,6 +23,18 @@ def home(request):
 def redirect_to_videopills():
     return "fuck"
 
+def test_mail(request):
+    from post_office import mail
+
+    mail.send(
+        ['ursinogabriele.0@gmail.com','chiora93@gmail.com'], # List of email addresses also accepted
+        'noreply@blozzer.it',
+        subject='My email',
+        message='Hi there!',
+        html_message='Hi <strong>there</strong>!',
+    )
+
+    return HttpResponse("SENT")
 
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,

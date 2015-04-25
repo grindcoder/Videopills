@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^search/',video_manager.views.search),
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^test-mail/', video_manager.views.test_mail)
 )
 
 # include static files

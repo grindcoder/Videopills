@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'video_manager',
+    'post_office',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -170,3 +171,50 @@ MEDIA_ROOT = os.path.join(HTML_DIR, 'media')
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
+
+
+
+#### CONFIGURAZIONI PER LE EMAIL
+EMAIL_BACKEND = 'post_office.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'chiora93@gmail.com'
+EMAIL_HOST_PASSWORD = 'A3ternalux'
+# Put this in settings.py
+POST_OFFICE = {
+    'LOG_LEVEL': 1 # Log only failed deliveries
+}
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "post_office": {
+            "format": "[%(levelname)s]%(asctime)s PID %(process)d: %(message)s",
+            "datefmt": "%d-%m-%Y %H:%M:%S",
+        },
+    },
+    "handlers": {
+        "post_office": {
+            "level": "DEBUG",
+            "class":'logging.handlers.RotatingFileHandler',
+            "formatter": "post_office",
+            'filename': os.path.join(DATA_DIR, 'MAIL.log'),
+            'maxBytes': 1024*1024*15, # 15MB
+            'backupCount': 10,
+        },
+        # If you use sentry for logging
+        # 'sentry': {
+        #     'level': 'ERROR',
+        #     'class': 'raven.contrib.django.handlers.SentryHandler',
+        # },
+    },
+    'loggers': {
+        "post_office": {
+            "handlers": ["post_office",],# "sentry"],
+            "level": "DEBUG"
+        },
+    },
+}
