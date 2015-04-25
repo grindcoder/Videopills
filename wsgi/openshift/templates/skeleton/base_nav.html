@@ -19,6 +19,16 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
+
+                            {% if request.user.is_authenticated %}
+                                <a href=""> Welcome '{{ request.user.username }}'</a>
+                            {% else %}
+                                <a href="/login">Login</a>
+                            {% endif %}
+
+
+                    </li>
+                    <li class="page-scroll">
                         <a href="#portfolio">Ultimi Pills</a>
                     </li>
                     <li class="page-scroll">
