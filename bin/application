@@ -1,0 +1,7 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import core.wsgi
+
+# reuse the application callable from core.wsgi
+application = core.wsgi.application

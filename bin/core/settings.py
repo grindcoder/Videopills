@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Django settings for openshift project.
+Django settings for core project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -13,6 +13,15 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 import socket
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+# cartella dei dati : videopills/data
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), '..','data')
+
+# cartella dei file statici : videopills/html
+HTML_DIR =  os.path.join(os.path.dirname(os.path.dirname(__file__)), '..','html')
+
+# cartella dei file .py : videopills/bin
+BIN_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Running on PRODUCTION ?
 ON_PROD = False
@@ -38,7 +47,7 @@ else:
      DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'openshift','templates') ,)
+TEMPLATE_DIRS = (os.path.join(DATA_DIR,'templates') ,)
 
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -87,9 +96,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
 )
 
-ROOT_URLCONF = 'openshift.urls'
+ROOT_URLCONF = 'core.urls'
 
-WSGI_APPLICATION = 'openshift.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -141,15 +150,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-if ON_PROD:
-    STATIC_ROOT = os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'static',)
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, '..' ,'static')
+STATIC_ROOT = os.path.join(HTML_DIR, 'static',)
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(DATA_DIR, "for_static"),
     #/home/admin/videopills/wsgi/static/ ,
 )
 
@@ -158,7 +164,7 @@ STATICFILES_DIRS = (
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR,'..', 'media')
+MEDIA_ROOT = os.path.join(HTML_DIR, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.

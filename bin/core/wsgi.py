@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-WSGI config for openshift project.
+WSGI config for core project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -12,10 +12,10 @@ import os
 import sys
 
 sys.path.append('/var/www/videopills/wsgi')
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "openshift.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 
 if 'OPENSHIFT_REPO_DIR' in os.environ:
-    sys.path.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'openshift'))
+    sys.path.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi', 'core'))
     virtenv = os.environ['OPENSHIFT_PYTHON_DIR'] + '/virtenv/'
     os.environ['PYTHON_EGG_CACHE'] = os.path.join(virtenv, 'lib/python3.3/site-packages')
     virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
