@@ -33,10 +33,7 @@ if socket.gethostname() == "raspberrypi" : # distinguo se siamo in produzione in
 
 # SECURITY WARNING: keep the secret key used in production secret!
 if ON_PROD:
-    try:
-        SECRET_KEY = os.environ['DJANGO_SETTINGS_SECRET_KEY']
-    except KeyError:
-        print("Please create env variable DJANGO_SETTINGS_SECRET_KEY (cf README)")
+    SECRET_KEY = "FUCKITr7#t)72#vc^)&&xj2&5zu&w94_d^-^&-j^8=$n9gjn=cjq))o="
 else:
     SECRET_KEY = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz' # dev key
 
