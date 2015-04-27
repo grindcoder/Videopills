@@ -1,25 +1,25 @@
 {% extends "skeleton/base.html" %}
 
 
-
-
-
 {% block content %}
 
 <body>
 
         {% if registered %}
 
+        <h3>
+            La tua registrazione è stata effettuata con successo.
+            Ti verrà spedita un e-mail di di conferma per confermare il tuo account
+        </h3>
+        <!--<form id="login_form" method="post" action="/login/">-->
+            <!--{% csrf_token %}-->
+            <!--Username: <input type="text" name="username" value="" size="50" />-->
+            <!--<br />-->
+            <!--Password: <input type="password" name="password" value="" size="50" />-->
+            <!--<br />-->
 
-        <form id="login_form" method="post" action="/login/">
-            {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
-
-            <input type="submit" value="submit" />
-        </form>
+            <!--<input type="submit" value="submit" />-->
+        <!--</form>-->
 
 
         {% else %}
