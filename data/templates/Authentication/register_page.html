@@ -3,14 +3,21 @@
 
 {% block content %}
 
-<body>
-
         {% if registered %}
-
-        <h3>
+        <div class="fluid-container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                <h3>
             La tua registrazione è stata effettuata con successo.
             Ti verrà spedita un e-mail di di conferma per confermare il tuo account
-        </h3>
+            </h3>
+                </div>
+            </div>
+        </div>
+
+
+
+
         <!--<form id="login_form" method="post" action="/login/">-->
             <!--{% csrf_token %}-->
             <!--Username: <input type="text" name="username" value="" size="50" />-->
