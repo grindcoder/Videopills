@@ -1,5 +1,8 @@
 # VIDEOPILLS #
 
+1. OVERVIEW
+2. INSTALLATION
+3. TODO
 
 ### OVERVIEW ###
 
@@ -81,3 +84,13 @@ To display your project locally, type (in your virtual environment) :
 $ (virtualenv_name):python bin/manage.py runserver
 ```
 
+
+
+
+**TODO**
+
+There are some features still in development :
+
+*  Graphics configurations not yet fully defined
+*  A powerful player for video playback
+*  Managing users still have to configure 
