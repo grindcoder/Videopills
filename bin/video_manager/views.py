@@ -209,3 +209,7 @@ def user_logout(request):
     logout(request)
 
     return render(request, 'Authentication/login_page.html', {'no_header' : True})
+
+
+def server_error(request):
+    return HttpResponse("Error, damn!")
