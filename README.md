@@ -2,7 +2,8 @@
 
 1. OVERVIEW
 2. INSTALLATION
-3. TODO
+3. DEPLOY
+4. TODO
 
 ### OVERVIEW ###
 
@@ -85,6 +86,14 @@ $ (virtualenv_name):python bin/manage.py runserver
 ```
 
 
+**DEPLOY**
+
+We will use [Gunicorn](http://gunicorn.org/) proxed by a [Nginx](http://nginx.org/en/) webserver.
+
+The deploy will be automated using [Fabric](http://www.fabfile.org/)
+
+
+
 
 
 **TODO**
@@ -93,4 +102,4 @@ There are some features still in development :
 
 *  Graphics configurations not yet fully defined
 *  A powerful player for video playback
-*  Managing users still have to configure 
+*  Managing users still have to configure
