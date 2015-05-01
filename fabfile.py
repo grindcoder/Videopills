@@ -65,6 +65,16 @@ def make_symlink():
                          env.deploy_current_dir))
 
 
+def install_dependencies():
+    print("Installing dependencies...")
+    with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
+        run("cd  /var/www/videopills/current && pip install -r requirements.txt")
+
+
+def sync_db():
+    print("Sync db...")
+    with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
+        run("cd  /var/www/videopills/current && python bin/manage.py syncdb")
 def restart_gunicorno():
     print("Restarting gunicorn")
     with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
@@ -80,6 +90,8 @@ def restart_nginx():
 def after_symlink():
     # code is live, perform any post-deploy tasks here
     print('after symlink tasks...')
+    sync_db()
+    install_dependencies()
 
     restart_gunicorno()
     restart_nginx()
