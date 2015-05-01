@@ -86,7 +86,7 @@ $ (virtualenv_name):python bin/manage.py runserver
 ```
 
 
-**DEPLOY**
+###DEPLOY###
 
 We will use [Gunicorn](http://gunicorn.org/) proxed by a [Nginx](http://nginx.org/en/) webserver.
 
