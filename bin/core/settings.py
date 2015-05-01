@@ -180,7 +180,7 @@ EMAIL_HOST_USER = 'chiora93@gmail.com'
 EMAIL_HOST_PASSWORD = 'A3ternalux'
 # Put this in settings.py
 POST_OFFICE = {
-    'LOG_LEVEL': 1 # Log only failed deliveries
+    'LOG_LEVEL': 1,  # Log only failed deliveries
 }
 
 
