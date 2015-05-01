@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from video_manager.forms import  UserForm, UserProfileForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login , logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
@@ -119,8 +119,8 @@ def register(request):
             registered = True
 
 
-        ## INVIO MAIL
-        ## La invio prima all'utente
+        # INVIO MAIL
+        # La invio prima all'utente
 
         mail.send(
             [user.email],
@@ -137,7 +137,6 @@ def register(request):
                 'noreply@blozzer.it',
                 template='thankyou_registration_backend',
                 render_on_delivery=True,
-
                 context={'administrator_name': administrator[0], 'username': user.username},
             )
 
@@ -161,7 +160,6 @@ def register(request):
 
 
 def user_login(request):
-
     # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
         errors = {}
@@ -204,3 +202,10 @@ def user_login(request):
         return render(request, 'Authentication/login_page.html', {'no_header' : True})
 
 
+def user_logout(request):
+
+    request.session.items = []
+    request.session.modified = True
+    logout(request)
+
+    return render(request, 'Authentication/login_page.html', {'no_header' : True})

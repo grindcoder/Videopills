@@ -9,6 +9,7 @@ import video_manager.views
 
 urlpatterns = patterns('',
     url(r'^login/$', video_manager.views.user_login, name='login'),
+    url(r'^logout/$', video_manager.views.user_logout, name='logout'),
     url(r'^register/$', video_manager.views.register, name='register'),
     # (r'^register/$', 'django.contrib.auth.views.login', {
     # 'template_name': 'Authentication/register_page.html'}),

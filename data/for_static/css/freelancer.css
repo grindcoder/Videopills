@@ -31,8 +31,8 @@ h3,
 h4,
 h5,
 h6 {
-    text-transform: uppercase;
-    font-family: "Lucida Console",Helvetica,Arial,sans-serif;
+    text-transform: none;
+    font-family: "Lucida Console",Monaco,monospace;;
     font-weight: 700;
 }
 
