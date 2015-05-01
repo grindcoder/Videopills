@@ -11,6 +11,8 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+from post_office import mail
+from core import settings
 
 # Create your views here.
 
@@ -28,7 +30,6 @@ def redirect_to_videopills():
     return "fuck"
 
 def test_mail(request):
-    from post_office import mail
 
     mail.send(
         ['ursinogabriele.0@gmail.com','chiora93@gmail.com'], # List of email addresses also accepted
@@ -123,7 +124,28 @@ def register(request):
             # Update our variable to tell the template registration was successful.
             registered = True
 
-            #return HttpResponseRedirect('/home/')
+
+        ## INVIO MAIL
+        ## La invio prima all'utente
+
+        mail.send(
+            [user.email],
+            'noreply@blozzer.it',
+            template='thankyou_registration',
+            render_on_delivery=True,
+            context={'username': request.POST.get('username', '')},
+        )
+
+        ## Invio agli amministratori per notificare l'iscrizione al sito
+        for administrator in settings.ADMINS:
+            mail.send(
+                [administrator[1]],
+                'noreply@blozzer.it',
+                template='thankyou_registration_backend',
+                render_on_delivery=True,
+
+                context={'administrator_name': administrator[0], 'username': user.username},
+            )
 
         # Invalid form or forms - mistakes or something else?
         # Print problems to the terminal.
