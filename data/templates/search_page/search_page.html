@@ -2,9 +2,9 @@
 {% block content %}
 
     {% load static %}
-    <section>
-            <div class="container">
-            <h1> You searched for "{{query_string}}" and the results are listed below:</h1>
+    <section class="search-result">
+        <div class="container">
+            <!--<h1> You searched for "{{query_string}}" and the results are listed below:</h1>-->
             {% if found_entries%}
                 {%for video_container in found_entries %}
                     <div class="row">
@@ -27,7 +27,7 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <h1>Non ci sono risultati per la tua ricerca!</h1>
+                <h1>Nessun risultato per la tua ricerca : "{{query_string}}"</h1>
             {% endif %}
             </div>
 

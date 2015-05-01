@@ -89,8 +89,8 @@ def search(request):
          found_entries = VideoContainer.objects.filter(entry_query).order_by('-pub_date')
          #raise Exception(found_entries)
      return render_to_response('search_page/search_page.html',
-                           { 'query_string': query_string, 'found_entries': found_entries },
-                           context_instance=RequestContext(request))
+                              { 'query_string': query_string, 'found_entries': found_entries , 'no_header' : True} ,
+                            context_instance=RequestContext(request))
 
 
 
