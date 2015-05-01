@@ -108,17 +108,11 @@ def register(request):
         #profile_form = UserProfileForm(data=request.POST)
 
         # If the two forms are valid...
-        if user_form.is_valid() :#and profile_form.is_valid():
-        # Save the user's form data to the database.
+        if user_form.is_valid() :
 
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-
-            #profile = profile_form.save()
-            #profile.user = user
-
-            #profile.save()
 
             # Update our variable to tell the template registration was successful.
             registered = True
