@@ -9,9 +9,9 @@
                 </div>
             </div>
             <!-- pezzettino che renderizza l'immagine con la lente sopra -->
-            {% for pills in list_of_pills %}
             <div class="row">
-                <div class="col-sm-4 portfolio-item">
+            {% for pills in list_of_pills %}
+            <div class="col-sm-4 portfolio-item">
                     <a href=#{{pills.episode_name.pk}} class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
@@ -21,10 +21,10 @@
                         <img src="{% static 'img/portfolio/cabin.png' %} " class="img-responsive" alt="">
                     </a>
                 </div>
-            </div>
             <!-- fine pezzettino -->
             {% endfor %}
-        </div>
+            </div>
+            </div>
     </section>
 
 
