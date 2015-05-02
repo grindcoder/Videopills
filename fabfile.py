@@ -10,6 +10,10 @@ env.port = 2333
 env.key_filename = '/home/schiorazzo/.ssh/id_rsa.pub'
 
 # specify path to files being deployed
+###
+###
+###
+
 env.archive_source = '/home/schiorazzo/webapps/videopills'
 
 # archive name, arbitrary, and only for transport
@@ -75,11 +79,14 @@ def sync_db():
     print("Sync db...")
     with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
         run("cd  /var/www/videopills/current && python bin/manage.py syncdb")
+
+
 def restart_gunicorno():
     print("Restarting gunicorn")
     with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
+        # sudo("TMP_GUNICORN_PID=cat /run/gunicorn_videopills.pid && kill -HUP TMP_GUNICORN_PID")
         run(
-            "cd /var/www/videopills/current && gunicorn bin.core.wsgi:application -w 9 --pythonpath /var/www/videopills/current/bin/ --bind 127.0.0.1:8888 -D")
+            "cd /var/www/videopills/current && gunicorn bin.core.wsgi:application -w 9 --pythonpath /var/www/videopills/current/bin/ --bind 127.0.0.1:8888 -D -p /run/gunicorn_videopills.pid")
 
 
 def restart_nginx():
