@@ -95,7 +95,7 @@ The deploy will be automated using [Fabric](http://www.fabfile.org/)
 
 Step to deploy:
 
-**Install fabric , NB: fabric works only on python <= 2.7
+**  Install fabric , NB: fabric works only on python <= 2.7**
 
 ```
 #!shell
