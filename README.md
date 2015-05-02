@@ -119,7 +119,7 @@ env.archive_source = '/home/youruser/yourprojects/videopills' # set your working
 
 ```
 
-2. Go to your working copy
+3. Go to your working copy
 
 
 
