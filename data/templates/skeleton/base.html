@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include 'skeleton/custom_head.html' %}
+    {% block custom_head %}
+    {% endblock %}
+
+</head>
+
+<body id="page-top" class="index">
+
+    {% include 'skeleton/base_nav.html' %}
+    {% block base_nav.html %}
+    {% endblock %}
+
+
+    <header>
+        {% include 'skeleton/base_header.html' %}
+        {% block custom_header %}
+        {% endblock %}
+    </header>
+
+
+
+
+
+    {% include 'skeleton/base_scrolltotopbutton.html' %}
+    {% block base_scrolltotopbutton %}
+    {% endblock %}
+
+
+    {# ATTENZIONE CAZZO -> QUESTO È IL BLOCCO DEL CONTENUTO DELLE PAGINE #}
+    {% block content %}
+    {% endblock %}
+
+
+    {% include 'skeleton/custom_footer.html' %}
+    {% block custom_footer %}
+    {% endblock %}
+
+    {% include 'skeleton/base_Javascript.html' %}
+    {% block base_JQuery %}
+    {% endblock %}
+
+
+</body>
+
+
+</html>

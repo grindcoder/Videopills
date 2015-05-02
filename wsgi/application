@@ -1,7 +1,0 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-import openshift.wsgi
-
-# reuse the application callable from openshift.wsgi
-application = openshift.wsgi.application
