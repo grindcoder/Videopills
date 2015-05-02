@@ -87,10 +87,8 @@ def collectstatic():
 
 def restart_gunicorno():
     print("Restarting gunicorn")
-    with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
-        # sudo("TMP_GUNICORN_PID=cat /run/gunicorn_videopills.pid && kill -HUP TMP_GUNICORN_PID")
-        run(
-            "cd /var/www/videopills/current && gunicorn bin.core.wsgi:application -w 9 --pythonpath /var/www/videopills/current/bin/ --bind 127.0.0.1:8888 -D -p /run/gunicorn_videopills.pid")
+    ## Che trick da paura
+    sudo("ps aux |grep gunicorn |grep videopills | awk '{ print $2 }' | xargs kill -HUP")
 
 
 def restart_nginx():
