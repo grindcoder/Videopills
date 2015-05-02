@@ -95,7 +95,18 @@ The deploy will be automated using [Fabric](http://www.fabfile.org/)
 
 Step to deploy:
 
-Open fabfile.py and edit the following configuration:
+1. Install fabric , NB: fabric works only on python <= 2.7
+
+
+```
+#!shell
+
+pip install fabric
+
+```
+
+
+2. Open fabfile.py and edit the following configuration:
 
 
 ```
@@ -107,6 +118,8 @@ env.archive_source = '/home/youruser/yourprojects/videopills' # set your working
 
 
 ```
+
+2. Go to your working copy
 
 
 
