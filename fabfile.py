@@ -7,14 +7,14 @@ env.user = 'pi'
 env.port = 2333
 # env.password = 'XXXXXXXX' #ssh password for user
 # or, specify path to server public key here:
-env.key_filename = '/home/schiorazzo/.ssh/id_rsa.pub'
+env.key_filename = '/root/.ssh/id_rsa.pub'
 
 # specify path to files being deployed
 ###
 ###
 ###
 
-env.archive_source = '/home/schiorazzo/webapps/videopills'
+env.archive_source = '/root/projects/videopills'
 
 # archive name, arbitrary, and only for transport
 env.archive_name = 'release'
@@ -80,6 +80,10 @@ def sync_db():
     with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
         run("cd  /var/www/videopills/current && python bin/manage.py syncdb")
 
+def collectstatic():
+    print("Collectstatic...")
+    with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
+        run("cd  /var/www/videopills/current && python bin/manage.py collectstatic")
 
 def restart_gunicorno():
     print("Restarting gunicorn")
@@ -98,6 +102,7 @@ def after_symlink():
     # code is live, perform any post-deploy tasks here
     print('after symlink tasks...')
     sync_db()
+    collectstatic()
     install_dependencies()
 
     restart_gunicorno()
