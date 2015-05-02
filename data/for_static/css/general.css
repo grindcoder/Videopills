@@ -2,6 +2,7 @@ body#page-top nav{
     background-color: #0B2036;
 }
 
-.search-result {
+.search-result , .register-section {
 padding-top : 200px ;
 }
+

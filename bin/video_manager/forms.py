@@ -12,10 +12,10 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'email', 'password', 'confirm_password')
 
     def is_valid(self):
-        if not self.fields['password'] == self.fields['confirm_password'] :
+        if not self.data['password'] == self.data['confirm_password'] :
             self.add_error( 'password' , 'Le password non coincidono' )
 
-        super(UserForm,self).is_valid()
+        return super(UserForm,self).is_valid()
 
 
 

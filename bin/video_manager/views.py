@@ -119,32 +119,32 @@ def register(request):
             registered = True
 
 
-        # INVIO MAIL
-        # La invio prima all'utente
+            # INVIO MAIL
+            # La invio prima all'utente
 
-        mail.send(
-            [user.email],
-            'noreply@blozzer.it',
-            template='thankyou_registration',
-            render_on_delivery=True,
-            context={'username': request.POST.get('username', '')},
-        )
-
-        ## Invio agli amministratori per notificare l'iscrizione al sito
-        for administrator in settings.ADMINS:
             mail.send(
-                [administrator[1]],
+                [user.email],
                 'noreply@blozzer.it',
-                template='thankyou_registration_backend',
+                template='thankyou_registration',
                 render_on_delivery=True,
-                context={'administrator_name': administrator[0], 'username': user.username},
+                context={'username': request.POST.get('username', '')},
             )
 
-        # Invalid form or forms - mistakes or something else?
-        # Print problems to the terminal.
-        # They'll also be shown to the user.
-        else:
-            errors = user_form.errors
+            ## Invio agli amministratori per notificare l'iscrizione al sito
+            for administrator in settings.ADMINS:
+                mail.send(
+                    [administrator[1]],
+                    'noreply@blozzer.it',
+                    template='thankyou_registration_backend',
+                    render_on_delivery=True,
+                    context={'administrator_name': administrator[0], 'username': user.username},
+                )
+
+            # Invalid form or forms - mistakes or something else?
+            # Print problems to the terminal.
+            # They'll also be shown to the user.
+            else:
+                errors = user_form.errors
 
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
@@ -156,7 +156,7 @@ def register(request):
     # Render the template depending on the context.
     return render(request,
             'Authentication/register_page.html',
-            {'user_form': user_form,  'registered': registered, 'errors' : errors} )
+            {'user_form': user_form,  'registered': registered, 'errors' : errors ,'no_header': True })
 
 
 def user_login(request):
