@@ -93,6 +93,22 @@ We will use [Gunicorn](http://gunicorn.org/) proxed by a [Nginx](http://nginx.or
 The deploy will be automated using [Fabric](http://www.fabfile.org/)
 
 
+Step to deploy:
+
+Open fabfile.py and edit the following configuration:
+
+
+```
+#!python
+
+env.key_filename = '/home/youruser/.ssh/your_key.pub' # Set your ssh public key path for authentication
+
+env.archive_source = '/home/youruser/yourprojects/videopills' # set your working copy path
+
+
+```
+
+
 
 
 
