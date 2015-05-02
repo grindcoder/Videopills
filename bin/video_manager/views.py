@@ -113,6 +113,7 @@ def register(request):
 
             user = user_form.save()
             user.set_password(user.password)
+            user.is_active = False
             user.save()
 
             # Update our variable to tell the template registration was successful.
@@ -182,8 +183,8 @@ def user_login(request):
                 return HttpResponseRedirect('/home/')
             else:
                 # An inactive account was used - no logging in!
-                return render_to_response('Authentication/register_page.html', {'form': form},
-                                          context_instance=RequestContext(request))
+                return HttpResponseRedirect('/register/')
+
 
         else:
              # Bad login details were provided. So we can't log the user in.
