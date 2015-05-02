@@ -95,8 +95,7 @@ The deploy will be automated using [Fabric](http://www.fabfile.org/)
 
 Step to deploy:
 
-1. Install fabric , NB: fabric works only on python <= 2.7
-
+**Install fabric , NB: fabric works only on python <= 2.7
 
 ```
 #!shell
@@ -106,8 +105,8 @@ pip install fabric
 ```
 
 
-2. Open fabfile.py and edit the following configuration:
-
+**  Open fabfile.py and edit the following configuration:
+**
 
 ```
 #!python
@@ -119,7 +118,16 @@ env.archive_source = '/home/youruser/yourprojects/videopills' # set your working
 
 ```
 
-3. Go to your working copy
+** Go to your working copy and start the deploy!
+**
+
+```
+#!shell
+
+bash#: fab deploy
+
+```
+
 
 
 
