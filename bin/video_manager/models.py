@@ -22,7 +22,7 @@ class VideoContainer(models.Model):                      # contenitore del video
     is_youtube_video = models.BooleanField(default=False)  # di default un video non è in formato youtube
     youtube_url = models.CharField(max_length=200, blank=True, null=True)
     ### Fine modifica youtube
-
+    preview_image = models.ImageField(upload_to="pills_images/%Y/%m/%d", null=True)
 
     custom_description = models.TextField(max_length=1000, null=True)
     pub_date = models.DateField()
