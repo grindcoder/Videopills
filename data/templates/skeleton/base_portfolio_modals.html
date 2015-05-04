@@ -17,8 +17,7 @@
                             <h2>{{pills.episode_name}}</h2>
                             <hr class="star-primary">
 
-                            {# Determino se mostrare il video con un iframe youtube o video.js attraverso il campo
-                            is_youtube_video! #}
+                            {# Determino se mostrare il video con un iframe youtube o video.js attraverso il campo is_youtube_video! #}
                             {% if pills.is_youtube_video %}
                             <iframe width="768" height="366" src="{{pills.youtube_url}}" frameborder="0"
                                     allowfullscreen>
