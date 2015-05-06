@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from fabric.api import local, run, env, put, prefix, sudo
 import os, time
 
@@ -7,14 +9,19 @@ env.user = 'pi'
 env.port = 2333
 # env.password = 'XXXXXXXX' #ssh password for user
 # or, specify path to server public key here:
-env.key_filename = '/home/schiorazzo/.ssh/id_rsa.pub'
+env.key_filename = '/root/.ssh/id_rsa.pub'
+
+APP_LIST_TO_RESET = (
+    'video_manager',
+)
+
 
 # specify path to files being deployed
 ###
 ###
 ###
 
-env.archive_source = '/home/schiorazzo/webapps/videopills'
+env.archive_source = '/root/projects/videopills'
 
 # archive name, arbitrary, and only for transport
 env.archive_name = 'release'
@@ -74,11 +81,20 @@ def install_dependencies():
     with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
         run("cd  /var/www/videopills/current && pip install -r requirements.txt")
 
-
-def sync_db():
-    print("Sync db...")
+def reset_migrations(app):
+    print ( "I will reset the migrations for {} ".format(app) )
     with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
-        run("cd  /var/www/videopills/current && python bin/manage.py syncdb")
+        run("cd  /var/www/videopills/current && python bin/manage.py migrate --fake {} zero ".format(app))
+
+def makemigrations():
+    print ("Makemigrations...")
+    with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
+        run("cd  /var/www/videopills/current && python bin/manage.py makemigrations")
+
+def migrate():
+    print("Migrate...")
+    with prefix("source /home/pi/.virtualenvs/env/bin/activate"):
+        run("cd  /var/www/videopills/current && python bin/manage.py migrate")
 
 def collectstatic():
     print("Collectstatic...")
@@ -99,10 +115,22 @@ def restart_nginx():
 def after_symlink():
     # code is live, perform any post-deploy tasks here
     print('after symlink tasks...')
-    sync_db()
+    for app in APP_LIST_TO_RESET:
+        reset_migrations(app)
+    makemigrations()
+    try :
+        migrate()
+    except :
+        print("Si è verificato un errore durante il tentativo di applicare le migrazioni ")
+        a = raw_input("Vuoi comunque ultimare il Deploy ? [yes/no] ")
+        while a not in ('yes','no'):
+                    a = raw_input("Vuoi comunque ultimare il Deploy ? [yes/no] ")
+        if a == "no" :
+            exit()
+
+
     collectstatic()
     install_dependencies()
-
     restart_gunicorno()
     restart_nginx()
 
