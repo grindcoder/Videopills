@@ -12,13 +12,26 @@
 
                                 <h2>{{video_container.episode_name}}</h2>
                                 <hr class="star-primary">
-                                <video id="{{video_container.episode_name.pk}}" class="video-js vjs-default-skin" controls
-                                 preload="auto" width="640" height="264" poster="{% static 'img/portfolio/cabin.png' %}"
-                                 data-setup="{}">
-                                 <source src="{%get_media_prefix%}{{ video_container.episode_trailer_filename}}" type='video/mp4'>
-                                 <!--source src="MY_VIDEO.webm" type='video/webm'-->
-                                 <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-                                </video>
+                            {# Modifica per visualizzazione iframe youtube #}
+                            {% if video_container.is_youtube_video %}
+                            <iframe width="768" height="366" src="{{video_container.youtube_url}}" frameborder="0"
+                                    allowfullscreen>
+
+                            </iframe>
+                            {% else %}
+
+                            <video id="{{video_container.episode_name.pk}}" class="video-js vjs-default-skin" controls
+                                   preload="auto" width="640" height="264"
+                                   poster="{% static 'img/portfolio/cabin.png' %}"
+                                   data-setup="{}">
+                                <source src="{%get_media_prefix%}{{ video_container.episode_trailer_filename}}"
+                                        type='video/mp4'>
+                                <!--source src="MY_VIDEO.webm" type='video/webm'-->
+                                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading
+                                    to a web browser that <a href="http://videojs.com/html5-video-support/"
+                                                             target="_blank">supports HTML5 video</a></p>
+                            </video>
+                            {% endif %}
                                 <p>
                                     {{video_container.custom_description}}
                                 </p>

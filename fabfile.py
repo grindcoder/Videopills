@@ -7,14 +7,14 @@ env.user = 'pi'
 env.port = 2333
 # env.password = 'XXXXXXXX' #ssh password for user
 # or, specify path to server public key here:
-env.key_filename = '/root/.ssh/id_rsa.pub'
+env.key_filename = '/home/schiorazzo/.ssh/id_rsa.pub'
 
 # specify path to files being deployed
 ###
 ###
 ###
 
-env.archive_source = '/root/projects/videopills'
+env.archive_source = '/home/schiorazzo/webapps/videopills'
 
 # archive name, arbitrary, and only for transport
 env.archive_name = 'release'
@@ -31,8 +31,8 @@ env.deploy_current_dir = 'current'
 
 def update_local_copy():
     # get latest / desired tag from your version control system
-    print('updating local copy...')
-    local('cd {0} && git pull origin develop'.format(env.archive_source))
+    version_to_deploy = raw_input("Quale versione vuoi deployare?")
+    local('cd {0} && git checkout {1}'.format(env.archive_source, version_to_deploy))
 
 
 def upload_archive():
@@ -87,8 +87,8 @@ def collectstatic():
 
 def restart_gunicorno():
     print("Restarting gunicorn")
-    ## Che trick da paura
-    sudo("ps aux |grep gunicorn |grep videopills | awk '{ print $2 }' | xargs kill -HUP")
+    ## Che trick da paura, ma non funziona con fab..
+    # sudo("ps aux |grep gunicorn |grep videopills | awk '{ print $2 }' | xargs kill -HUP")
 
 
 def restart_nginx():
